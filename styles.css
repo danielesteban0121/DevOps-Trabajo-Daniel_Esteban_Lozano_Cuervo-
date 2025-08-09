@@ -18,13 +18,136 @@ html, body {
     height: 100vh;
 }
 
-/* Lado izquierdo blanco */
+/* Lado izquierdo con imagen de fondo y contenido */
 .left-side {
     width: 50%;
-    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    background-color: #ffffff; /* Color de fondo oscuro como en la imagen */
 }
 
-/* Lado derecho con login */
+.left-side-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5; /* Hacemos la imagen más transparente */
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.left-side-bg2 {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.tagline {
+    font-size: 15px;
+    color: #a0b3c0;
+    font-style: italic;
+    margin-top: 0; /* Elimina margen superior predeterminado */
+    margin-left: 70px; /* Ajusta para alinear con el texto "Grancole Pro" (50px logo + 10px margen) */
+}
+
+.institutional-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(55, 34, 88, 0.8); /* Fondo semitransparente oscuro */
+    color: white;
+}
+
+.info-card {
+    max-width: 500px;
+    padding: 30px;
+}
+
+.info-card h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.info-card h1 span {
+    color: #4CAF50; /* Color verde para "Pro" */
+}
+
+.info-card h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.platform-description {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    color: #e0e0e0;
+}
+
+.features-list {
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+.features-list li {
+    margin-bottom: 10px;
+    position: relative;
+    list-style-type: none;
+    padding-left: 25px;
+    color: #ffffff;
+}
+
+.features-list li:before {
+    content: "•";
+    color: #4CAF50;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #a0b3c0;
+    text-transform: uppercase;
+}
+
+/*//////////////////////// Lado derecho con login //////////////////////////////*/
 .right-side {
     width: 50%;
     background-color: #f0f8ff;
@@ -35,6 +158,31 @@ html, body {
     padding: 40px;
 }
 
+.right-side .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.right-side .logo {
+    width: 100px; /* Ajusta según el tamaño deseado */
+    height: auto;
+    margin: 0 auto 15px; /* Centra la imagen y añade margen inferior */
+    display: block;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.right-side .logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* Logo y bienvenida */
 .logo-container {
     text-align: center;
@@ -42,11 +190,10 @@ html, body {
 }
 
 .logo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: center; /* Centra el logo horizontalmente */
+    align-items: center; /* Centra el logo verticalmente */
+    margin: 0 auto; /* Centrado adicional */
 }
 
 .logo-container h2 {
@@ -59,7 +206,7 @@ html, body {
     color: #666;
 }
 
-/* Formulario */
+/*/////////////////////////////// Formulario ///////////////////////////////////////////*/
 .login-form {
     width: 100%;
     max-width: 400px;
@@ -172,8 +319,48 @@ html, body {
     margin-top: 20px;
 }
 
+/*////////////////////// Efecto de burbujas mini ///////////////////////////////////////*/
+.bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.945);
+    border-radius: 50%;
+    animation: floating linear infinite;
+    filter: blur(1px);
+    will-change: transform;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.3); /* Efecto de brillo */
+}
+
+@keyframes floating {
+    0% {
+        bottom: -20px;
+        transform: translateX(0) scale(2.5);
+        opacity: 1;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        bottom: 110%;
+        transform: translateX(var(--move-x)) scale(0.6);
+        opacity: 0.1;
+    }
+}
+
 /* ========================================
-   Media Queries - Responsive Design
+    Media Queries - Responsive Design
    ======================================== */
 
 /* Pantallas medianas (tablets) */
@@ -185,18 +372,17 @@ html, body {
 
     .left-side {
         width: 100%;
-        height: 200px; /* Altura fija para el logo o imagen decorativa */
+        height: 750px; /* Altura fija para el logo o imagen decorativa */
         background-color: #ffffff;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .left-side::after {
-        content: "Grancóle";
-        font-size: 24px;
-        font-weight: bold;
-        color: #333;
+    .main-title {
+        justify-content: center;
+        align-items: center;
+        display: flex;
     }
 
     .right-side {
@@ -216,7 +402,7 @@ html, body {
 }
 
 /* Pantallas pequeñas (móviles) */
-@media (max-width: 480px) {
+@media (max-width: 400px) {
     .container {
         padding: 10px;
     }
